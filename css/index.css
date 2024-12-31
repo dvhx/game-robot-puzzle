@@ -1,0 +1,36 @@
+body {
+    background-color: #140C1C;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    user-select: none;
+    -moz-user-select: none;
+    height: 100%;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.gt_bubbles_next {
+    background-image: url('../image/next.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 128px;
+    height: 64px;
+    border: 0;
+    color: transparent;
+    background-color: transparent;
+    right: 1ex;
+    bottom: 1ex;
+    filter: drop-shadow(0.5ex 0.5ex 0.5ex rgba(0,0,0,1));
+    outline: none;
+    image-rendering: pixelated;
+    image-rendering: optimizespeed;
+}
+

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Robot puzzle</title>
+
+    <link rel="stylesheet" href="css/levels.css" type="text/css" />
+    <link rel="stylesheet" href="css/index.css" type="text/css" />
+    <link rel="stylesheet" href="css/slider.css" type="text/css" />
+    <link rel="stylesheet" href="css/complete.css" type="text/css" />
+    <link rel="stylesheet" href="css/help.css" type="text/css" />
+    <link rel="stylesheet" href="css/buttons.css" type="text/css" />
+    <link rel="stylesheet" href="css/intro.css" type="text/css" />
+
+  </head>
+  <body>
+    <canvas id="background_canvas"></canvas>
+    <canvas id="character_canvas"></canvas>
+
+    <!-- available instructions -->
+    <div id="instructions" class="buttons"></div>
+
+    <!-- program -->
+    <div id="program" class="buttons"></div>
+
+    <!-- level completed -->
+    <div id="complete" class="complete">
+        <img class="title" src="image/complete.png" />
+        <div class="summary">
+            <div class="stars">⭐⭐⭐</div>
+            <div class="res"><span class="instructions">15</span> instructions</div>
+            <div class="res"><span class="steps">22</span> steps</div>
+        </div>
+        <div class="controls">
+            <img class="replay" src="image/replay.png" />
+            <img class="next" src="image/next.png" />
+        </div>
+        <div class="controls">
+            <img class="menubutton" src="image/menu.png" />
+        </div>
+    </div>
+
+    <!-- level intro -->
+    <div id="intro" style="display: none;">
+        <div class="box">
+            <h1 id="intro_title"></h1>
+            <p id="intro_objective"></p>
+            <img src="image/play.png" />
+        </div>
+    </div>
+
+    <!-- level help -->
+    <div id="help" style="display: none;">
+        <div class="controls">
+            <img id="help_menu1" src="image/menu.png" />
+            <div>
+                <h1 id="help_title">Level 1</h1>
+                <h2 id="help_subtitle">subtitle</h2>
+            </div>
+            <img id="help_play1" src="image/play.png" />
+        </div>
+
+        <img id="help_thumbnail" class="thumbnail" src="map/library_get_key.png" />
+        <p id="help_info">info</p>
+
+        <h3>Score</h3>
+        <table>
+            <tr>
+                <td>⭐⭐⭐</td>
+                <td><span id="help_bi">??</span> instructions and <span id="help_bs">??</span> steps or less</td>
+            </tr>
+            <tr>
+                <td>⭐⭐</td>
+                <td><span id="help_mi">??</span> instructions and <span id="help_ms">??</span> steps or less</td>
+            </tr>
+            <tr>
+                <td>⭐</td>
+                <td>Finishing level</td>
+            </tr>
+        </table>
+
+        <h3>Available instructions</h3>
+
+        <table>
+            <tr id="help_inst_forward">
+                <td><img class="inst" src="image/forward.png" /></td>
+                <td>Forward - Move one step forward if there isn't any obstacle ahead.</td>
+            </tr>
+            <tr id="help_inst_left">
+                <td><img class="inst" src="image/left.png" /></td>
+                <td>Turn left - Turn 90° to the left.</td>
+            </tr>
+            <tr id="help_inst_right">
+                <td><img class="inst" src="image/right.png" /></td>
+                <td>Turn right - Turn 90° to the right.</td>
+            </tr>
+            <tr id="help_inst_pick">
+                <td><img class="inst" src="image/pick.png" /></td>
+                <td>Pick - Pick item on the position character is standing on. Only some items can be picked.</td>
+            </tr>
+            <tr id="help_inst_drop">
+                <td><img class="inst" src="image/drop.png" /></td>
+                <td>Drop - Drop item on the position character is standing on. Only one item can be dropped on
+                the ground, if you want to drop more you must walk somewhere else.</td>
+            </tr>
+            <tr id="help_inst_unlock">
+                <td><img class="inst" src="image/unlock.png" /></td>
+                <td>Unlock - Unlock the doors directly in front of the character. When unlocked you can walk there.</td>
+            </tr>
+            <tr id="help_inst_repeat">
+                <td><img class="inst" src="image/repeat.png" /></td>
+                <td>Repeat - Repeats commands inside this block specified amount of times. When you add this instruction a slider will appear where you can specify how many times should instructions be repeated. You can change this later by taping on the repeat command on the bottom of the screen. This instruction has it's own plus sign where you can add other instructions to be repeated.
+                    <br>
+                    <img src="image/help_repeat.png" style="max-width: 100%;"/>
+                    <br>
+                    In the example above, first command is Forward, second command is
+                    Repeat which contains two commands (#3 Forward and #4 Pick), then
+                    the plus sign (red) which adds commands inside the Repeat block.
+                    Then #5 is normal command (will not be repeated) and the blue plus
+                    will add commands to the end of program.
+                </td>
+            </tr>
+            <tr id="help_inst_canForward">
+                <td><img class="inst" src="image/canForward.png" /></td>
+                <td>Can forward - This command contains two blocks, each may contain multiple commands.
+                First block will run if there is no obstacle ahead. Second block will be run if there is
+                obstacle ahead.
+                    <br>
+                    <img src="image/help_canForward.png" style="max-width: 100%;"/>
+                    <br>
+                    In the example above, first instruction is Forward, then is second
+                    instruction "Can forward" with 2 blocks (CAN and CAN'T). If character
+                    can go forward first block will be executed with Forward and Left command.
+                    If character cannot go forward second block will be executed with Right command.
+                    After that 6th command will be executed and so on.
+                </td>
+            </tr>
+            <tr id="help_inst_canLeft">
+                <td><img class="inst" src="image/canLeft.png" /></td>
+                <td>Can left - This command contains two blocks, each may contain multiple commands.
+                First block will run if there is no obstacle on left. Second block will be run if there is
+                obstacle left.
+                </td>
+            </tr>
+            <tr id="help_inst_canRight">
+                <td><img class="inst" src="image/canRight.png" /></td>
+                <td>Can right - This command contains two blocks, each may contain multiple commands.
+                First block will run if there is no obstacle on right. Second block will be run if there is
+                obstacle right.
+                </td>
+            </tr>
+        </table>
+
+        <h3 id="console_trigger">Editing program</h3>
+
+        <p>Click on the available instructions on the top to add them to program at the bottom, then click on "Run" to run the program.</p>
+
+        <p>You can also add instruction into block by clicking on + sign at the end of the block.</p>
+
+        <p>To remove instruction swipe them down.</p>
+
+        <p>To change instruction swipe them up and choose different instruction.</p>
+
+        <h3>Credits</h3>
+
+        <p>This game uses tileset TINY16 by Sharm (Lanea Zimmerman) published on https://opengameart.org/content/tiny-16-basic</p>
+
+        <div class="controls">
+            <img id="help_menu2" src="image/menu.png" />
+            <div></div>
+            <img id="help_play2" src="image/play.png" />
+        </div>
+
+    </div>
+
+    <div id="help_empty_program" style="display: none;">
+        <button>X</button>
+        <b>You must add some instructions to the program!</b>
+        Click on the available instructions on the top to add them to program at the bottom, then click on "Run" to run the program.
+        You can also add instruction into block by clicking on + sign at the end of the block.
+        To remove instruction swipe them down.
+        To change instruction swipe it up and choose different instruction.
+    </div>
+
+    <script type="text/javascript" src="map/tileset/all.js"></script>
+    <script type="text/javascript" src="map/library_get_key.js"></script>
+    <script type="text/javascript" src="map/library_open_bars.js"></script>
+    <script type="text/javascript" src="map/library_find_book.js"></script>
+    <script type="text/javascript" src="map/apples_pick.js"></script>
+    <script type="text/javascript" src="map/apples_poop.js"></script>
+    <script type="text/javascript" src="map/maze_big.js"></script>
+    <script type="text/javascript" src="map/maze_small.js"></script>
+    <script type="text/javascript" src="map/forrest.js"></script>
+    <script type="text/javascript" src="map/deep_forrest.js"></script>
+    <script type="text/javascript" src="map/impossible.js"></script>
+    <script type="text/javascript" src="map/locked.js"></script>
+
+    <script type="text/javascript" src="js/storage.js"></script>
+    <script type="text/javascript" src="js/touchpad.js"></script>
+    <script type="text/javascript" src="js/sound.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
+    <script type="text/javascript" src="js/background.js"></script>
+    <script type="text/javascript" src="js/canvas.js"></script>
+    <script type="text/javascript" src="js/character.js"></script>
+    <script type="text/javascript" src="js/place.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/bubble.js"></script>
+    <script type="text/javascript" src="js/effect.js"></script>
+    <script type="text/javascript" src="js/levels_screen.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/finish.js"></script>
+    <script type="text/javascript" src="js/swipeup.js"></script>
+    <script type="text/javascript" src="js/program.js"></script>
+    <script type="text/javascript" src="js/slider.js"></script>
+    <script type="text/javascript" src="js/popupinst.js"></script>
+    <script type="text/javascript" src="js/blocks.js"></script>
+    <script type="text/javascript" src="js/complete.js"></script>
+    <script type="text/javascript" src="js/instructions.js"></script>
+    <script type="text/javascript" src="js/levels.js"></script>
+    <script type="text/javascript" src="js/help.js"></script>
+    <script type="text/javascript" src="js/intro.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+
+  </body>
+</html>

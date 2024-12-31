@@ -1,0 +1,48 @@
+.complete {
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 1ex;
+    box-sizing: border-box;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+.complete .stars {
+    text-align: center;
+    font-size: large;
+    margin-bottom: 1ex;
+}
+.complete .title {
+    display: flex;
+    width: 40%;
+    margin: 0 auto;
+    padding: 0 2cm;
+    image-rendering: pixelated;
+    image-rendering: optimizespeed;
+}
+.complete .res {
+    font-weight: normal;
+}
+.complete .res span {
+    font-weight: bold;
+}
+.complete .controls {
+    display: flex;
+    justify-content: center;
+}
+.complete .controls img {
+    margin-left: 1ex;
+    margin-right: 1ex;
+    margin-bottom: 1ex;
+}
+.complete .summary {
+    text-align: center;
+    margin: 1ex;
+    color: white;
+    text-shadow: 0 0 2px black;
+}
+

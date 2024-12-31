@@ -1,0 +1,86 @@
+.buttons {
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    max-width: 100vw;
+    outline: 0 solid lime;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+.buttons button {
+    /*
+    min-width: 32px;
+    min-height: 32px;
+    */
+    min-width: 1.2cm;
+    min-height: 1.2cm;
+    background-repeat: no-repeat;
+    background-size: contain;
+    image-rendering: pixelated;
+    image-rendering: optimizespeed;
+    border: 0;
+    color: blue;
+    text-align: right;
+    vertical-align: bottom;
+    position: relative;
+    /*
+    margin-right: 1px;
+    margin-bottom: 1px;
+    */
+    padding: 0;
+}
+.buttons span.count {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: xx-small;
+    font-weight: bold;
+}
+.buttons button.forward {
+    background-image: url('../image/forward.png');
+}
+.buttons button.left {
+    background-image: url('../image/left.png');
+}
+.buttons button.right {
+    background-image: url('../image/right.png');
+}
+.buttons button.pick {
+    background-image: url('../image/pick.png');
+}
+.buttons button.drop {
+    background-image: url('../image/drop.png');
+}
+.buttons button.repeat {
+    background-image: url('../image/repeat.png');
+}
+.buttons button.unlock {
+    background-image: url('../image/unlock.png');
+}
+.buttons button.run {
+    background-image: url('../image/run.png');
+}
+.buttons button.canLeft {
+    background-image: url('../image/canLeft.png');
+}
+.buttons button.canRight {
+    background-image: url('../image/canRight.png');
+}
+.buttons button.canForward {
+    background-image: url('../image/canForward.png');
+}
+.buttons button.help {
+    background-image: url('../image/help.png');
+}
+.buttons button.clear {
+    background-image: url('../image/clear.png');
+}
+#instructions {
+    top: 0;
+}
+#program {
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+}
+

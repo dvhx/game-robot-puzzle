@@ -1,0 +1,87 @@
+#help {
+    /* background-color: rgba(0,0,0,0.5); */
+    background-color: silver;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 1ex;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    z-index: 5;
+}
+#help h1, #help h2 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: small;
+}
+#help .thumbnail {
+    float: left;
+    margin-right: 1ex;
+    max-width: 40%;
+    max-height: 40%;
+}
+#help p {
+    margin: 0;
+    margin-bottom: 1ex;
+}
+#help table {
+    width: 100%;
+}
+#help table img {
+    border: 1px solid gray;
+}
+#help table img.inst {
+    width: 32px;
+    height: 32px;
+}
+#help table td {
+    vertical-align: top;
+}
+#help h3 {
+    clear: both;
+    margin: 0;
+    padding-top: 1ex;
+}
+#help .controls {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin-bottom: 1ex;
+}
+#help .controls div {
+    flex: 1;
+}
+
+#help_empty_program {
+    background-color: silver;
+    position: fixed;
+    left: 10vw;
+    bottom: 10vh;
+    max-width: 80vw;
+    max-height: 60vh;
+    padding: 1ex;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    border: 1px solid black;
+    border-radius: 1ex;
+    box-shadow: 0 0 1ex black;
+}
+
+#help_empty_program button {
+    float: right;
+}
+
+#help textarea {
+    display: block;
+    width: 100%;
+    height: 5em;
+    box-sizing: border-box;
+}
+
+#help button {
+    min-width: 1.3cm;
+    min-height: 1cm;
+}
